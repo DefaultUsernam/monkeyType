@@ -26,7 +26,9 @@ public class SocketClientExample {
      * information
      * and another thread in charge of receiving information.
      */
-    public static void main(String[] args)
+    private String myOld = "";
+    
+    public SocketClientExample()
             throws UnknownHostException, IOException, ClassNotFoundException, InterruptedException {
         // get the localhost IP address, if server is running on some other IP, you need
         // to use that
@@ -38,19 +40,21 @@ public class SocketClientExample {
         int curr = 0;
         GUI gui = new GUI();
         String input;
-        String myOld = "";
         Thread t = new Thread(() -> {
         while (true) {
             if (!gui.old.equals(myOld))
-                myOld=gui.old;
+                myOld = gui.old;
                 input = myOld;
                 try {
                     oos.writeObject(input);
                     oos.flush();
                 } catch (IOException etwo) {
-                }
+            }
             
-
+            public static void main(String[] args)
+                    throws UnknownHostException, IOException, ClassNotFoundException, InterruptedException {//yea idk why its done like this eier
+                new SocketClientExample();
+            }
         }
     });
     Thread t1 = new Thread(() -> {

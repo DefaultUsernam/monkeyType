@@ -18,6 +18,7 @@ import javax.swing.text.StyledDocument;
 
 
 public class GUI {
+    boolean win;
     public String old = "";
     JTextArea wordsToType;
     JFrame everything;
@@ -25,8 +26,22 @@ public class GUI {
     public GUI(){
         
          everything = new JFrame("Player GUIs");
-        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-boolean win = false;
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+win = false;
         everything.setTitle("Multitype");
         everything.setSize(900, 700);
         everything.setVisible(true);
@@ -52,21 +67,21 @@ boolean win = false;
         everything.add(myTyped);
 
 
-          javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                everything.createAndShowGUI();
-            }
-        });
+        //   javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        //     public void run() {
+        //         everything.createAndShowGUI();
+        //     }
+        // });
         
     }
     //precondition: the typed variable contains how much the opponent has typed CORRECTLY
     public void highlightTheirWords(String typed){
         String a = wordsToType.getText().substring(0,typed.length()-1);
         String b = wordsToType.getText().substring(typed.length()-1);
-        everything.wordsToType.setText("<html><font color=red>"+a+"/font"+b+"/html");
+        wordsToType.setText("<html><font color=red>"+a+"/font"+b+"/html");
     }
     public void setWords(String target){
-        everything.wordsToType.setText(target);
+        wordsToType.setText(target);
     }
     public void run(){
         

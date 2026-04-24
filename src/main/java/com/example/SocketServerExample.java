@@ -27,7 +27,7 @@ public class SocketServerExample {
     public static void main(String args[]) throws IOException, ClassNotFoundException{
         //create the socket server object
         server1 = new ServerSocket(port1);
-        server2 = ne ServerSocket(port2);
+        server2 = new ServerSocket(port2);
 
 Game g = new Game();
         //keep listens indefinitely until receives 'exit' call or program terminates
@@ -48,7 +48,7 @@ Game g = new Game();
             
 
             //convert ObjectInputStream object to String
-            String message = (String) ois1.readObject();
+            String message1 = (String) ois1.readObject();
             String message2 = (String) ois2.readObject();
             //create ObjectOutputStream object
             ObjectOutputStream oos1 = new ObjectOutputStream(socket1.getOutputStream());
@@ -96,7 +96,8 @@ myJPanel.add(label);
         }
         System.out.println("Shutting down Socket server!!");
         //close the ServerSocket object
-        server.close();
+        server1.close();
+        server2.close();
     }
     
 }
